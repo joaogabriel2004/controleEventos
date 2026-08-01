@@ -150,7 +150,7 @@ export function EventoForm({ initialData, onSubmit, isSubmitting = false }: Even
           </section>
 
           <section className="flex flex-col gap-5">
-            <h2 className="text-[#7c6af5] text-sm md:text-base font-semibold flex items-center gap-2 border-b border-[#ffffff14] pb-2">🔥 Financeiro</h2>
+            <h2 className="text-[#7c6af5] text-sm md:text-base font-semibold flex items-center gap-2 border-b border-[#ffffff14] pb-2">💰 Financeiro</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-end">
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs md:text-sm text-gray-400">Valor Cobrado pelo Serviço *</label>
