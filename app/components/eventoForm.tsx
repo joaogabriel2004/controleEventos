@@ -108,99 +108,99 @@ export function EventoForm({ initialData, onSubmit, isSubmitting = false }: Even
   };
 
   return (
-    <div className="flex flex-col flex-1 items-center justify-center font-sans bg-[#0c0c10] min-h-screen py-8 px-4 sm:px-6">
-      <main className="flex w-full max-w-3xl flex-col px-6 py-8 md:p-10 bg-[#16161e] text-white sm:rounded-2xl sm:border sm:border-[#ffffff14] shadow-xl">
+    <div className="flex flex-col flex-1 items-center justify-center font-sans bg-[#000000] min-h-screen py-8 px-4 sm:px-6 text-[#fcefe0]">
+      <main className="flex w-full max-w-3xl flex-col px-6 py-8 md:p-10 bg-[#023270]/20 sm:rounded-2xl sm:border sm:border-[#023270] shadow-xl">
         
         <div className="flex items-center justify-between mb-10">
-          <button onClick={() => router.back()} type="button" className="text-gray-400 hover:text-white transition-colors text-sm font-medium">
+          <button onClick={() => router.back()} type="button" className="text-[#fcefe0]/70 hover:text-[#fcefe0] transition-colors text-sm font-medium">
             ← Voltar
           </button>
-          <h1 className="text-xl md:text-2xl font-bold">{initialData?.nome ? "Editar Evento" : "Novo Evento"}</h1>
+          <h1 className="text-xl md:text-2xl font-bold text-[#fcefe0]">{initialData?.nome ? "Editar Evento" : "Novo Evento"}</h1>
           <div className="w-16"></div>
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-10">
           
           <section className="flex flex-col gap-5">
-            <h2 className="text-[#7c6af5] text-sm md:text-base font-semibold flex items-center gap-2 border-b border-[#ffffff14] pb-2">📋 Dados Básicos</h2>
+            <h2 className="text-[#fcefe0] text-sm md:text-base font-semibold flex items-center gap-2 border-b border-[#023270] pb-2">📋 Dados Básicos</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div className="flex flex-col gap-1.5 md:col-span-2">
-                <label className="text-xs md:text-sm text-gray-400">Nome do Evento *</label>
-                <input type="text" name="nome" value={formData.nome} onChange={handleChange} className="bg-[#1c1c2a] border border-[#ffffff14] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#7c6af5] transition-colors w-full" required />
+                <label className="text-xs md:text-sm text-[#fcefe0]/70">Nome do Evento *</label>
+                <input type="text" name="nome" value={formData.nome} onChange={handleChange} className="bg-[#023270]/30 border border-[#023270] rounded-xl px-4 py-3 text-sm text-[#fcefe0] focus:outline-none focus:border-[#fcefe0] transition-colors w-full placeholder-[#fcefe0]/40" required />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs md:text-sm text-gray-400">Data do Evento *</label>
-                <input type="date" name="data" value={formData.data} onChange={handleChange} className="bg-[#1c1c2a] border border-[#ffffff14] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#7c6af5] transition-colors [color-scheme:dark] w-full" required />
+                <label className="text-xs md:text-sm text-[#fcefe0]/70">Data do Evento *</label>
+                <input type="date" name="data" value={formData.data} onChange={handleChange} className="bg-[#023270]/30 border border-[#023270] rounded-xl px-4 py-3 text-sm text-[#fcefe0] focus:outline-none focus:border-[#fcefe0] transition-colors [color-scheme:dark] w-full" required />
               </div>
             </div>
           </section>
 
           <section className="flex flex-col gap-5">
-            <h2 className="text-[#7c6af5] text-sm md:text-base font-semibold flex items-center gap-2 border-b border-[#ffffff14] pb-2">👥 Equipe</h2>
+            <h2 className="text-[#fcefe0] text-sm md:text-base font-semibold flex items-center gap-2 border-b border-[#023270] pb-2">👥 Equipe</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs md:text-sm text-gray-400">Nº de Promotores *</label>
-                <input type="number" name="promotores" value={formData.promotores} onChange={handleChange} className="bg-[#1c1c2a] border border-[#ffffff14] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#7c6af5] transition-colors w-full" required />
+                <label className="text-xs md:text-sm text-[#fcefe0]/70">Nº de Promotores *</label>
+                <input type="number" name="promotores" value={formData.promotores} onChange={handleChange} className="bg-[#023270]/30 border border-[#023270] rounded-xl px-4 py-3 text-sm text-[#fcefe0] focus:outline-none focus:border-[#fcefe0] transition-colors w-full" required />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs md:text-sm text-gray-400">Função *</label>
-                <input type="text" name="funcao" value={formData.funcao} onChange={handleChange} className="bg-[#1c1c2a] border border-[#ffffff14] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#7c6af5] transition-colors w-full" required />
+                <label className="text-xs md:text-sm text-[#fcefe0]/70">Função *</label>
+                <input type="text" name="funcao" value={formData.funcao} onChange={handleChange} className="bg-[#023270]/30 border border-[#023270] rounded-xl px-4 py-3 text-sm text-[#fcefe0] focus:outline-none focus:border-[#fcefe0] transition-colors w-full" required />
               </div>
             </div>
           </section>
 
           <section className="flex flex-col gap-5">
-            <h2 className="text-[#7c6af5] text-sm md:text-base font-semibold flex items-center gap-2 border-b border-[#ffffff14] pb-2">💰 Financeiro</h2>
+            <h2 className="text-[#fcefe0] text-sm md:text-base font-semibold flex items-center gap-2 border-b border-[#023270] pb-2">💰 Financeiro</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-end">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs md:text-sm text-gray-400">Valor Cobrado pelo Serviço *</label>
-                <input type="text" name="valorServico" value={formData.valorServico} onChange={handleChange} className="bg-[#1c1c2a] border border-[#ffffff14] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#7c6af5] transition-colors w-full" required />
+                <label className="text-xs md:text-sm text-[#fcefe0]/70">Valor Cobrado pelo Serviço *</label>
+                <input type="text" name="valorServico" value={formData.valorServico} onChange={handleChange} className="bg-[#023270]/30 border border-[#023270] rounded-xl px-4 py-3 text-sm text-[#fcefe0] focus:outline-none focus:border-[#fcefe0] transition-colors w-full" required />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs md:text-sm text-gray-400">Status da Nota Fiscal</label>
+                <label className="text-xs md:text-sm text-[#fcefe0]/70">Status da Nota Fiscal</label>
                 <div className="flex gap-4">
-                  <button type="button" onClick={() => handleNfStatus("Emitida")} className={`flex-1 py-3 rounded-xl text-sm font-medium border transition-all ${formData.statusNf === "Emitida" ? "border-[#22c55e] text-[#22c55e] bg-[#22c55e]/10" : "border-[#ffffff14] text-gray-400 bg-[#1c1c2a]"}`}>✓ Emitida</button>
-                  <button type="button" onClick={() => handleNfStatus("Pendente")} className={`flex-1 py-3 rounded-xl text-sm font-medium border transition-all ${formData.statusNf === "Pendente" ? "border-[#7c6af5] text-[#7c6af5] bg-[#7c6af5]/10" : "border-[#ffffff14] text-gray-400 bg-[#1c1c2a]"}`}>⏳ Pendente</button>
+                  <button type="button" onClick={() => handleNfStatus("Emitida")} className={`flex-1 py-3 rounded-xl text-sm font-medium border transition-all ${formData.statusNf === "Emitida" ? "border-[#22c55e] text-[#22c55e] bg-[#22c55e]/10" : "border-[#023270] text-[#fcefe0]/70 bg-[#023270]/30"}`}>✓ Emitida</button>
+                  <button type="button" onClick={() => handleNfStatus("Pendente")} className={`flex-1 py-3 rounded-xl text-sm font-medium border transition-all ${formData.statusNf === "Pendente" ? "border-[#fcefe0] text-[#fcefe0] bg-[#023270]" : "border-[#023270] text-[#fcefe0]/70 bg-[#023270]/30"}`}>⏳ Pendente</button>
                 </div>
               </div>
             </div>
           </section>
 
-          <section className="flex flex-col gap-5 bg-[#1c1c2a]/50 p-5 rounded-2xl border border-[#ffffff0a]">
-            <h2 className="text-white text-sm md:text-base font-semibold flex items-center gap-2">🧾 Custos da Operação</h2>
+          <section className="flex flex-col gap-5 bg-[#023270]/30 p-5 rounded-2xl border border-[#023270]">
+            <h2 className="text-[#fcefe0] text-sm md:text-base font-semibold flex items-center gap-2">🧾 Custos da Operação</h2>
             <div className="flex flex-col gap-3">
               {formData.custos.map((custo, index) => (
                 <div key={custo.id || index} className="flex gap-3 items-center">
-                  <input type="text" value={custo.descricao} onChange={(e) => handleCostChange(custo.id, "descricao", e.target.value)} placeholder={`Custo ${index + 1}`} className="bg-[#1c1c2a] border border-[#ffffff14] rounded-xl px-4 py-3 text-sm w-full focus:outline-none focus:border-[#7c6af5]" />
-                  <input type="text" value={custo.valor} onChange={(e) => handleCostChange(custo.id, "valor", e.target.value)} placeholder="0" className="bg-[#1c1c2a] border border-[#ffffff14] rounded-xl px-4 py-3 text-sm w-24 md:w-32 focus:outline-none focus:border-[#7c6af5]" />
+                  <input type="text" value={custo.descricao} onChange={(e) => handleCostChange(custo.id, "descricao", e.target.value)} placeholder={`Custo ${index + 1}`} className="bg-[#023270]/40 border border-[#023270] rounded-xl px-4 py-3 text-sm text-[#fcefe0] placeholder-[#fcefe0]/40 w-full focus:outline-none focus:border-[#fcefe0]" />
+                  <input type="text" value={custo.valor} onChange={(e) => handleCostChange(custo.id, "valor", e.target.value)} placeholder="0" className="bg-[#023270]/40 border border-[#023270] rounded-xl px-4 py-3 text-sm text-[#fcefe0] placeholder-[#fcefe0]/40 w-24 md:w-32 focus:outline-none focus:border-[#fcefe0]" />
                   <button type="button" onClick={() => removeCost(custo.id)} className="text-red-500 hover:text-red-400 px-2 text-xl font-bold">×</button>
                 </div>
               ))}
-              <button type="button" onClick={addCost} className="mt-2 w-full py-3 rounded-xl text-sm font-medium border border-dashed border-[#ffffff20] text-gray-400 hover:text-white transition-all">+ Adicionar custo</button>
+              <button type="button" onClick={addCost} className="mt-2 w-full py-3 rounded-xl text-sm font-medium border border-dashed border-[#023270] text-[#fcefe0]/70 hover:text-[#fcefe0] hover:border-[#fcefe0] transition-all">+ Adicionar custo</button>
             </div>
           </section>
 
           <section className="flex flex-col gap-5">
-            <h2 className="text-white text-sm md:text-base font-semibold flex items-center gap-2">📧 Relatório por E-mail</h2>
+            <h2 className="text-[#fcefe0] text-sm md:text-base font-semibold flex items-center gap-2 border-b border-[#023270] pb-2">📧 Relatório por E-mail</h2>
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs md:text-sm text-gray-400">E-mail para envio (opcional)</label>
-              <input type="email" name="email" value={formData.email} onChange={handleChange} className="bg-[#1c1c2a] border border-[#ffffff14] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#7c6af5] transition-colors w-full" />
+              <label className="text-xs md:text-sm text-[#fcefe0]/70">E-mail para envio (opcional)</label>
+              <input type="email" name="email" value={formData.email} onChange={handleChange} className="bg-[#023270]/30 border border-[#023270] rounded-xl px-4 py-3 text-sm text-[#fcefe0] focus:outline-none focus:border-[#fcefe0] transition-colors w-full" />
             </div>
           </section>
 
-          <div className="bg-[#1c1c2a] rounded-2xl p-6 border border-[#ffffff14] flex justify-between items-center mt-2 shadow-lg">
+          <div className="bg-[#023270]/40 rounded-2xl p-6 border border-[#023270] flex justify-between items-center mt-2 shadow-lg">
             <div className="flex flex-col">
-              <span className="text-xs text-gray-400 mb-1">Lucro estimado</span>
+              <span className="text-xs text-[#fcefe0]/70 mb-1">Lucro estimado</span>
               <span className={`text-xl md:text-2xl font-bold ${lucroEstimado >= 0 ? 'text-[#22c55e]' : 'text-red-500'}`}>{formatCurrency(lucroEstimado)}</span>
             </div>
             <div className="flex flex-col items-end">
-              <span className="text-xs text-gray-400 mb-1">Total custos</span>
-              <span className="text-lg md:text-xl font-bold text-white">{formatCurrency(totalCustos)}</span>
+              <span className="text-xs text-[#fcefe0]/70 mb-1">Total custos</span>
+              <span className="text-lg md:text-xl font-bold text-[#fcefe0]">{formatCurrency(totalCustos)}</span>
             </div>
           </div>
 
           <div className="mt-2">
-            <button type="submit" disabled={isSubmitting} className={`w-full text-white font-semibold py-4 rounded-xl transition-all ${isSubmitting ? "bg-gray-600 cursor-not-allowed" : "bg-[#7c6af5] hover:bg-[#6b5ae0]"}`}>
+            <button type="submit" disabled={isSubmitting} className={`w-full text-[#000000] font-bold py-4 rounded-xl transition-all ${isSubmitting ? "bg-gray-600 cursor-not-allowed text-white" : "bg-[#fcefe0] hover:bg-white"}`}>
               {isSubmitting ? "Salvando..." : "Salvar Alterações"}
             </button>
           </div>
