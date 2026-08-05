@@ -11,12 +11,19 @@ interface Evento {
   data: string;
   statusNf: string;
   lucroEstimado: number;
+  totalCustos?: number;
+  custos?: { descricao: string; valor: number }[];
 }
 
 export default function VisualizarEventos() {
   const router = useRouter();
   const [eventos, setEventos] = useState<Evento[]>([]);
   const [loading, setLoading] = useState(true);
+
+  // Estados para o envio de e-mail
+  const [selectedEvento, setSelectedEvento] = useState<Evento | null>(null);
+  const [emailInput, setEmailInput] = useState("");
+  const [sendingEmail, setSendingEmail] = useState(false);
 
   const fetchEventos = async () => {
     try {
@@ -49,6 +56,38 @@ export default function VisualizarEventos() {
         console.error("Erro ao deletar evento:", error);
         alert("Erro ao excluir o evento.");
       }
+    }
+  };
+
+  // Função para enviar o relatório por e-mail via API Route (Resend)
+  const handleSendEmail = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!emailInput || !selectedEvento) return;
+
+    setSendingEmail(true);
+
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: emailInput,
+          evento: selectedEvento,
+        }),
+      });
+
+      if (res.ok) {
+        alert("Relatório enviado com sucesso!");
+        setSelectedEvento(null);
+        setEmailInput("");
+      } else {
+        alert("Falha ao enviar o e-mail.");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar e-mail:", error);
+      alert("Erro ao processar envio de e-mail.");
+    } finally {
+      setSendingEmail(false);
     }
   };
 
@@ -116,16 +155,23 @@ export default function VisualizarEventos() {
                   </span>
                 </div>
 
-                <div className="flex gap-3 mt-2">
+                {/* Ações */}
+                <div className="grid grid-cols-3 gap-2 mt-2">
                   <button 
                     onClick={() => router.push(`/formEvento/${evento.id}`)}
-                    className="flex-1 py-2 bg-[#023270] hover:bg-[#023270]/80 text-[#fcefe0] rounded-lg text-sm font-medium transition-colors border border-[#fcefe0]/20"
+                    className="py-2 bg-[#023270] hover:bg-[#023270]/80 text-[#fcefe0] rounded-lg text-xs font-medium transition-colors border border-[#fcefe0]/20 flex items-center justify-center gap-1"
                   >
                     ✏️ Editar
                   </button>
                   <button 
+                    onClick={() => setSelectedEvento(evento)}
+                    className="py-2 bg-[#fcefe0]/10 hover:bg-[#fcefe0]/20 text-[#fcefe0] rounded-lg text-xs font-medium transition-colors border border-[#fcefe0]/20 flex items-center justify-center gap-1"
+                  >
+                    ✉️ E-mail
+                  </button>
+                  <button 
                     onClick={() => handleDelete(evento.id)}
-                    className="flex-1 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg text-sm font-medium transition-colors border border-red-500/20"
+                    className="py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg text-xs font-medium transition-colors border border-red-500/20 flex items-center justify-center gap-1"
                   >
                     🗑️ Excluir
                   </button>
@@ -137,6 +183,50 @@ export default function VisualizarEventos() {
         )}
 
       </main>
+
+      {/* Modal para inserção do e-mail */}
+      {selectedEvento && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-[#023270] border border-[#fcefe0]/30 rounded-2xl p-6 w-full max-w-md text-[#fcefe0] shadow-2xl">
+            <h3 className="text-lg font-bold mb-2">Enviar Relatório por E-mail</h3>
+            <p className="text-xs text-[#fcefe0]/80 mb-4">
+              Informe o e-mail de destino para o evento <strong>{selectedEvento.nome}</strong>.
+            </p>
+
+            <form onSubmit={handleSendEmail} className="flex flex-col gap-4">
+              <input
+                type="email"
+                required
+                placeholder="exemplo@email.com"
+                value={emailInput}
+                onChange={(e) => setEmailInput(e.target.value)}
+                className="w-full px-4 py-2.5 bg-[#000000]/60 border border-[#fcefe0]/20 rounded-lg text-[#fcefe0] placeholder-[#fcefe0]/40 focus:outline-none focus:border-[#fcefe0]"
+              />
+
+              <div className="flex gap-3 justify-end mt-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedEvento(null);
+                    setEmailInput("");
+                  }}
+                  className="px-4 py-2 bg-transparent hover:bg-black/20 text-[#fcefe0]/80 rounded-lg text-sm font-medium transition-colors"
+                >
+                  Cancelar
+                </button>
+                
+                <button
+                  type="submit"
+                  disabled={sendingEmail}
+                  className="px-4 py-2 bg-[#fcefe0] hover:bg-white text-[#000000] rounded-lg text-sm font-bold transition-colors disabled:opacity-50"
+                >
+                  {sendingEmail ? "Enviando..." : "Enviar agora"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

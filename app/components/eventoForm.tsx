@@ -180,14 +180,6 @@ export function EventoForm({ initialData, onSubmit, isSubmitting = false }: Even
             </div>
           </section>
 
-          <section className="flex flex-col gap-5">
-            <h2 className="text-[#fcefe0] text-sm md:text-base font-semibold flex items-center gap-2 border-b border-[#023270] pb-2">📧 Relatório por E-mail</h2>
-            <div className="flex flex-col gap-1.5">
-              <label className="text-xs md:text-sm text-[#fcefe0]/70">E-mail para envio (opcional)</label>
-              <input type="email" name="email" value={formData.email} onChange={handleChange} className="bg-[#023270]/30 border border-[#023270] rounded-xl px-4 py-3 text-sm text-[#fcefe0] focus:outline-none focus:border-[#fcefe0] transition-colors w-full" />
-            </div>
-          </section>
-
           <div className="bg-[#023270]/40 rounded-2xl p-6 border border-[#023270] flex justify-between items-center mt-2 shadow-lg">
             <div className="flex flex-col">
               <span className="text-xs text-[#fcefe0]/70 mb-1">Lucro estimado</span>
